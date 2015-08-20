@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap
+
+//fadeout flash messages
+$('.flash').not('.login_error').fadeIn(function() {
+    setTimeout(function() {
+        $('.flash').fadeOut();
+    }, '2000');
+});
