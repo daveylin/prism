@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150819024806) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.integer  "failed_attempts",        default: 0,    null: false
+    t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
