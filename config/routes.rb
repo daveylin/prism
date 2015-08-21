@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'administration/show'
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   #as :user do
     #get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
