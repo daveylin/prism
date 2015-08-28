@@ -1,0 +1,42 @@
+<h3>Register New User</h3>
+
+<div class="row">
+  <div class="col-md-8">
+    <%= form_for @user do |f| %>
+      <%= devise_error_messages! %>
+      <div class="form-group">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, autofocus: true, class: 'form-control', placeholder: "Enter first name" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: 'form-control', placeholder: "Enter last name" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control', placeholder: "Enter email" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control', placeholder: "Enter password" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Enter password confirmation" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :role %> (Select One)<br>
+        <%= f.radio_button :role, :genuser, :checked => true %> General User
+        <%= f.radio_button :role, :viewonly %> View Only
+        <%= f.radio_button :role, :admin %> Administrator
+      </div>
+      <div class="form-group">
+        <%= f.label :status %><br>
+        <%= f.check_box :active %> Active User  
+      </div>
+      <div class="form-group">
+        <%= f.submit "Add User", class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>

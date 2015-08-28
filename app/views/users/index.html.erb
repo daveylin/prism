@@ -1,0 +1,16 @@
+<h1>User Administration</h1>
+
+<% if policy(User.new).create? %>
+<%= link_to "Add New User", new_user_path, class: 'btn btn-success' %>
+<% end %>
+
+<br>
+<br>
+
+<h3>Current Users</h3>
+<% @users.each do |user| %>
+  <div class="media">
+    <%= link_to user.email, edit_user_path(user) %>
+  </div>
+<% end %>
+

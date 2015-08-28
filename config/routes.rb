@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
-  get 'administration/show'
 
-  devise_for :users, :controllers => { registrations: 'registrations' }
-  as :user do
-    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-    post 'users/new' => 'devise/registrations#new', :as => 'new_user_registration'
-    put 'users' => 'devise/registrations#update', :as => 'user_registration'
-  end
+  devise_for :users
+  resources :users, only: [:update, :index, :new, :edit, :create] 
+  
   get 'welcome/index'
   get 'welcome/about'
   
