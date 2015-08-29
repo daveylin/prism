@@ -15,4 +15,7 @@ class User < ActiveRecord::Base
   def viewonly?
     role == 'viewonly'
   end
+  
+  #default_scope { order(first_name: :asc, last_name: :asc) }
+  default_scope { order('LOWER(first_name)', 'LOWER(last_name)') }
 end

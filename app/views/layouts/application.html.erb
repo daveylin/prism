@@ -13,6 +13,7 @@
   <ul class="nav nav-tabs">
     <li><%= link_to "Home", welcome_index_path %></li>
     <li><%= link_to "About", welcome_about_path %></li>
+    <% if current_user %><li><%= link_to "My Profile", edit_user_path(current_user) %></li><% end %>
     <% if current_user && current_user.admin? %><li><%= link_to "User Admin", users_path %></li><% end %>
     
     <li class="pull-right">

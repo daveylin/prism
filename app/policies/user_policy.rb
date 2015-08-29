@@ -12,10 +12,10 @@ class UserPolicy < ApplicationPolicy
   end
   
   def update?
-    user.admin?
+    user.admin?#user.present? && (record.user == current_user || user.admin?)
   end
   
   def edit?
-    user.admin?
+    user.present? && (record.id == user.id || user.admin?)
   end
 end

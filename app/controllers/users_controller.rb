@@ -19,26 +19,25 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize current_user
     if (user_params["password"] == "" && user_params["active"] == "true")
-      user_params[:locked_at] = nil
-      user_params[:failed_attempts] = 0
+      @user.locked_at = nil
+      @user.failed_attempts = 0
       @user.update_attributes(user_params.except(:password, :password_confirmation))
-      redirect_to edit_user_path(@user), notice: "User was saved successfully1."
+      redirect_to edit_user_path(@user), notice: "User was saved successfully."
     elsif (user_params["password"] == "" && user_params["active"] == "false")
-      user_params[:locked_at] = Time.now
-      user_params[:failed_attempts] = 10
+      @user.locked_at = Time.now
+      @user.failed_attempts  = 10
       @user.update_attributes(user_params.except(:password, :password_confirmation))
-      redirect_to edit_user_path(@user), notice: "User was saved successfully2."
+      redirect_to edit_user_path(@user), notice: "User was saved successfully."
     elsif (user_params["password"] != "" && user_params["active"] == "true")
-      user_params[:locked_at] = nil
-      user_params[:failed_attempts] = 0
-      #binding.pry
+      @user.locked_at = nil
+      @user.failed_attempts  = 0
       @user.update_attributes(user_params)
-      redirect_to edit_user_path(@user), notice: "User was saved successfully3."
+      redirect_to edit_user_path(@user), notice: "User was saved successfully."
     elsif (user_params["password"] != "" && user_params["active"] == "false")
-      user_params[:locked_at] = Time.now
-      user_params[:failed_attempts] = 10
+      @user.locked_at = Time.now
+      @user.failed_attempts = 10
       @user.update_attributes(user_params)
-      redirect_to edit_user_path(@user), notice: "User was saved successfully4."
+      redirect_to edit_user_path(@user), notice: "User was saved successfully."
     else
       flash[:error] = "Error saving user. Please try again."
       render :edit
@@ -52,14 +51,15 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users_active = User.where(active: true)
+    @users_inactive = User.where(active: false)
     authorize current_user
   end
   
   private
 
   def user_params
-    @user_params ||= params.require(:user).permit(:first_name, :last_name, :active, :email, :password, :password_confirmation, :role, :failed_attempts, :locked_at)
+    params.require(:user).permit(:first_name, :last_name, :active, :email, :password, :password_confirmation, :role)
   end
   
 end

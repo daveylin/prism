@@ -24,6 +24,7 @@
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Enter password confirmation" %>
       </div>
+      <% if current_user.admin? %>
       <div class="form-group">
         <%= f.label :role %> (Select One)<br>
         <%= f.radio_button :role, :genuser %> General User
@@ -34,6 +35,7 @@
         <%= f.label :status %><br>
         <%= f.check_box :active, {}, "true", "false" %> Active User
       </div>
+      <% end %>
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>
       </div>
