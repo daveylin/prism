@@ -13,7 +13,35 @@
   <ul class="nav nav-tabs">
     <li><%= link_to "Home", welcome_index_path %></li>
     <li><%= link_to "About", welcome_about_path %></li>
+    <% if current_user %><li><%= link_to "My Profile", edit_user_path(current_user) %></li><% end %>
+    <% if current_user && current_user.admin? %><li><%= link_to "User Admin", users_path %></li><% end %>
+    
+    <li class="pull-right">
+      <% if current_user %>
+        <%= link_to "Logged in as: "+current_user.last_name+", "+current_user.first_name+" Last login: "+current_user.last_sign_in_at.to_s(:long) +" - Sign out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path %>
+      <% end %>
+    </li>
+    
   </ul>
+  <br>
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert alert-danger">
+         <button type="button" class="close" data-dismiss="alert">&times;</button>
+         <%= flash[:error] %>
+      </div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
   <%= yield %>
 </div>
 </body>

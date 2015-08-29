@@ -1,0 +1,60 @@
+<h1>User Administration</h1>
+
+<% if policy(User.new).create? %>
+<%= link_to "Add New User", new_user_path, class: 'btn btn-success' %>
+<% end %>
+
+<br>
+<br>
+
+<h3>Active Users</h3>
+
+<div class="container">           
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users_active.each do |user| %>
+      <tr>
+        <td class="col-md-2"><%= link_to user.first_name, edit_user_path(user) %></td>
+        <td class="col-md-2"><%= link_to user.last_name, edit_user_path(user) %></td>
+        <td class="col-md-4"><%= link_to user.email, edit_user_path(user) %></td>
+        <td class="col-md-2"><%= link_to user.role, edit_user_path(user) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h3>Inactive Users</h3>
+
+<div class="container">           
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users_inactive.each do |user| %>
+      <tr>
+        <td class="col-md-2"><%= link_to user.first_name, edit_user_path(user) %></td>
+        <td class="col-md-2"><%= link_to user.last_name, edit_user_path(user) %></td>
+        <td class="col-md-4"><%= link_to user.email, edit_user_path(user) %></td>
+        <td class="col-md-2"><%= link_to user.role, edit_user_path(user) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

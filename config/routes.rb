@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+  resources :users, only: [:update, :index, :new, :edit, :create] 
+  
   get 'welcome/index'
   get 'welcome/about'
   
@@ -58,4 +62,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
+  get '*path' => redirect('/')
 end
