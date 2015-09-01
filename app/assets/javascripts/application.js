@@ -16,6 +16,7 @@
 //= require_tree .
 //= require bootstrap
 
+
 //fadeout flash messages
 $('.flash').not('.login_error').fadeIn(function() {
     setTimeout(function() {

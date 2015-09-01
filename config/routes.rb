@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:update, :index, :new, :edit, :create] 
+  resources :dashboard, only: [:index]
+  resources :people
   
   get 'welcome/index'
   get 'welcome/about'
