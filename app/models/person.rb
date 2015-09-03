@@ -1,8 +1,9 @@
 class Person < ActiveRecord::Base
- 
-def self.search(search)
-  #where(first_name: LIKE ("%#{search}%")) 
-  #where("last_name LIKE ?", "%#{search}%")
-  where("first_name like ?", "%#{search}%") 
-end
+  def self.search(first_name, last_name)
+    where("first_name ilike ?", "%#{first_name}%").where("last_name ilike ?", "%#{last_name}%")
+  end
+  
+  def self.searchdob(first_name, last_name, dob)
+    where("first_name ilike ?", "%#{first_name}%").where("last_name ilike ?", "%#{last_name}%").where("dob = ?", "%#{dob}%")
+  end
 end

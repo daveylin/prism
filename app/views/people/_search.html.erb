@@ -1,15 +1,47 @@
-
-<h1>search</h1>
-<%= form_tag({:controller => "people", :action => "index"}, :method => "post", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Person" %>
+<h4>Person Search: </h4>
+<%= form_tag({:controller => "dashboard", :action => "search"}, :method => "post", id: "search-form") do %>
+  <%= text_field_tag :first_name, params[:first_name], placeholder: "First Name" %>
+  <%= text_field_tag :last_name, params[:last_name], placeholder: "Last Name" %>
+  <%= date_field_tag :dob, params[:dob] %>
   <%= submit_tag "Search", class: 'btn btn-sm btn-success' %>
+  <%= link_to "Add New Person", new_person_path, class: 'btn btn-sm btn-success' %>
 <% end %>
 <br>
-
-<% if @people.present? %>
-  <% @people.each do |p| %>
-    <%= p.first_name %> <%= p.last_name %><br>
-  <% end %>
+<% if @people.present? %>       
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>DOB</th>
+        <th>Address</th>
+        <th></th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Primary Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @people.each do |p| %>
+      <tr>
+        <td class="col-md-2"><%= link_to p.first_name, person_path(p) %></td>
+        <td class="col-md-2"><%= link_to p.middle_name, person_path(p) %></td>
+        <td class="col-md-2"><%= link_to p.last_name, person_path(p) %></td>
+        <td class="col-md-1"><%= link_to p.dob, person_path(p) %></td>
+        <td class="col-md-2"><%= link_to p.address_line_1, person_path(p) %></td>
+        <td class="col-md-1"><%= link_to p.address_line_2, person_path(p) %></td>
+        <td class="col-md-1"><%= link_to p.city, person_path(p) %></td>
+        <td class="col-md-1"><%= link_to p.state, person_path(p) %></td>
+        <td class="col-md-1"><%= link_to p.zip, person_path(p) %></td>
+        <td class="col-md-2"><%= link_to p.primary_phone, person_path(p) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% elsif @people.nil? %>
+  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
 <% else %>
   <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
 <% end %>

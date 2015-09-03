@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index]
   resources :people
   
+  post 'dashboard/search'
+  get '/person/:id', to: 'person#show'
   get 'welcome/index'
   get 'welcome/about'
   

@@ -1,2 +1,79 @@
-<h1>People#edit</h1>
-<p>Find me in app/views/people/edit.html.erb</p>
+<h4>Add new person</h4>
+
+<%= form_for @person do |f| %>
+  <div class="row top-buffer">
+    <div class="form-group">
+      <label class="col-sm-1 rt-label" for="textinput">Name</label>
+      <div class="col-sm-3">
+        <%= f.text_field :first_name, autofocus: true, class: 'form-control input-sm', placeholder: "First name" %>
+      </div>
+      <label class="col-sm-1" for="textinput"></label>
+      <div class="col-sm-2">
+        <%= f.text_field :middle_name, class: 'form-control input-sm', placeholder: "Middle name" %>
+      </div>
+      <label class="col-sm-1" for="textinput"></label>
+      <div class="col-sm-3">
+        <%= f.text_field :last_name, class: 'form-control input-sm', placeholder: "Last name" %>
+      </div>
+    </div>
+  </div>
+  <div class="row top-buffer">
+    <div class="form-group">
+      <label class="col-sm-1 rt-label" for="textinput">DOB</label>
+      <div class="col-sm-2">
+        <%= f.date_field :dob, class: 'form-control input-sm', placeholder: "mm/dd/yyy" %>
+      </div>
+      <label class="col-sm-1 rt-label" for="textinput"></label>
+      <label class="col-sm-1 rt-label" for="textinput">SSN</label>
+      <div class="col-sm-2">
+        <%= f.text_field :ssn, class: 'form-control input-sm', placeholder: "###-##-####" %>
+      </div>
+    </div>
+  </div>
+  <div class="row top-buffer">
+    <div class="form-group">
+      <label class="col-sm-1 rt-label" for="textinput">Address</label>
+      <div class="col-sm-3">
+        <%= f.text_field :address_line_1, class: 'form-control input-sm', placeholder: "Address line 1" %>
+      </div>
+      <label class="col-sm-1" for="textinput"></label>
+      <div class="col-sm-3">
+        <%= f.text_field :address_line_2, class: 'form-control input-sm', placeholder: "Address line 2" %>
+      </div>
+    </div>
+  </div>
+  <div class="row top-buffer">
+    <div class="form-group">
+      <label class="col-sm-1" for="textinput"></label>
+      <div class="col-sm-3">
+        <%= f.text_field :city, autofocus: true, class: 'form-control input-sm', placeholder: "City" %>
+      </div>
+      <label class="col-sm-1" for="textinput"></label>
+      <div class="col-sm-1">
+        <%= f.text_field :state, class: 'form-control input-sm', placeholder: "State" %>
+      </div>
+      <label class="col-sm-2" for="textinput"></label>
+      <div class="col-sm-2">
+        <%= f.text_field :zip, class: 'form-control input-sm', placeholder: "Zip" %>
+      </div>
+    </div>
+  </div>
+  <div class="row top-buffer">
+    <div class="form-group">
+      <label class="col-sm-1 rt-label" for="textinput">Phone</label>
+      <div class="col-sm-2">
+        <%= f.text_field :primary_phone, class: 'form-control input-sm', placeholder: "Primary phone" %>
+      </div>
+      <label class="col-sm-2" for="textinput"></label>
+      <div class="col-sm-2">
+        <%= f.text_field :secondary_phone, class: 'form-control input-sm', placeholder: "Secondary phone" %>
+      </div>
+    </div>
+  </div>
+<br>
+  <div class="form-group">
+    <label class="col-sm-1" for="textinput"></label>
+    <%= f.submit "Save", class: 'btn btn-sm btn-success' %>
+    <%= link_to "Delete", person_path, method: :delete, class: 'btn btn-danger btn-sm' %>
+  </div>
+<% end %>
