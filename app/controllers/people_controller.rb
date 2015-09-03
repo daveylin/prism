@@ -25,6 +25,10 @@ class PeopleController < ApplicationController
   end
 
   def index
+    if params[:search]
+      @people = Person.search(params[:search]).order("first_name ASC")
+      redirect_to dashboard_index_path
+    end
   end
 
   def show

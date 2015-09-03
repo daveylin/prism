@@ -1,7 +1,15 @@
-<% if @people.present? %>
-<% @people.each do |p| %>
-  <%= p.first_name %> <%= p.last_name %><br>
+
+<h1>search</h1>
+<%= form_tag({:controller => "people", :action => "index"}, :method => "post", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Person" %>
+  <%= submit_tag "Search", class: 'btn btn-sm btn-success' %>
 <% end %>
+<br>
+
+<% if @people.present? %>
+  <% @people.each do |p| %>
+    <%= p.first_name %> <%= p.last_name %><br>
+  <% end %>
 <% else %>
   <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
 <% end %>
