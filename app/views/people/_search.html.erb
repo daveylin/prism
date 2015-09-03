@@ -26,10 +26,10 @@
     <tbody>
       <% @people.each do |p| %>
       <tr>
-        <td class="col-md-2"><%= link_to p.first_name, person_path(p) %></td>
-        <td class="col-md-2"><%= link_to p.middle_name, person_path(p) %></td>
-        <td class="col-md-2"><%= link_to p.last_name, person_path(p) %></td>
-        <td class="col-md-1"><%= link_to p.dob, person_path(p) %></td>
+        <td class="col-md-1"><%= link_to p.first_name, person_path(p) %></td>
+        <td class="col-md-1"><%= link_to p.middle_name, person_path(p) %></td>
+        <td class="col-md-1"><%= link_to p.last_name, person_path(p) %></td>
+        <td class="col-md-1"><% if p.dob.nil? %><% "" %><% else %><%= link_to p.dob.try(:strftime, '%m/%d/%Y'), person_path(p) %><% end %></td>
         <td class="col-md-2"><%= link_to p.address_line_1, person_path(p) %></td>
         <td class="col-md-1"><%= link_to p.address_line_2, person_path(p) %></td>
         <td class="col-md-1"><%= link_to p.city, person_path(p) %></td>
