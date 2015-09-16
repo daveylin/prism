@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:update, :index, :new, :edit, :create] 
   resources :dashboard, only: [:index]
-  resources :people
+  resources :people do
+    resources :hotline#, controller: 'hotline'
+  end
   
   post 'dashboard/search'
   get '/person/:id', to: 'person#show'

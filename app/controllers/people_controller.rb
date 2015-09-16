@@ -45,7 +45,7 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    @hotlines = Hotline.where(person_id: @person.id)
+    #@hotlines = Hotline.where(person_id: @person.id)
   end
   
   private
