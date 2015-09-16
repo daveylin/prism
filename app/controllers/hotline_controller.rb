@@ -18,7 +18,5 @@ class HotlineController < ApplicationController
   end
 
   def show
-    @person = Person.first#find(params[:id])
-    @hotlines = Hotline.where(person_id: @person.id)
   end
 end

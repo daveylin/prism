@@ -17,7 +17,7 @@
          <%= "Shelter" %>
        </div>
        <div class="tab-pane" id="hotline">
-         <%= render :partial => 'hotline/hotlines_show', :controller => 'hotline' %>
+         <%= render :partial => 'hotline/hotlines_show', :locals => {:hotlines => hotline_show} %>
        </div>
      </div>
    </div>
