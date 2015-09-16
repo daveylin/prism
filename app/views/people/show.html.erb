@@ -1,3 +1,24 @@
 <h4>Client: <i><%= link_to "#{@person.last_name}, #{@person.first_name}", edit_person_path(@person) %></i> DOB: <i><% if @person.dob.nil? %><% "" %><% else %><%= link_to "#{@person.dob.try(:strftime, '%m/%d/%Y')}", edit_person_path(@person) %></i><% end %></h4>
 <b>Address:</b><%= " #{@person.address_line_1} #{@person.address_line_2} #{@person.city}, #{@person.state} #{@person.zip}" %> <b>Primary Phone:</b> <%= " #{@person.primary_phone}" %>
-
+<br>
+<br>
+<div class="row">
+   <div class="tabbable tabs-left">
+     <ul class="nav nav-tabs">
+       <li class="active"><a href="#casemanagement" data-toggle="tab">Case Management</a></li>
+       <li><a href="#shelter" data-toggle="tab">Shelter</a></li>
+       <li><a href="#hotline" data-toggle="tab">Hotline</a></li>
+     </ul>
+     <div class="tab-content">
+       <div class="tab-pane active" id="casemanagement">
+         <%= "Case Management" %>
+       </div>
+       <div class="tab-pane" id="shelter">
+         <%= "Shelter" %>
+       </div>
+       <div class="tab-pane" id="hotline">
+         <%= render partial: 'hotlines_show' %>
+       </div>
+     </div>
+   </div>
+</div>
