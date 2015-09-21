@@ -4,13 +4,16 @@ Rails.application.routes.draw do
   resources :users, only: [:update, :index, :new, :edit, :create] 
   resources :dashboard, only: [:index]
   resources :people do
-    resources :hotline#, controller: 'hotline'
+    resources :hotline
   end
+  
+  get "hotline/_hotlines_edit" => 'hotline#_hotlines_edit', :as => :edit_hotline
   
   post 'dashboard/search'
   get '/person/:id', to: 'person#show'
   get 'welcome/index'
   get 'welcome/about'
+  #get 'hotline/_hotlines_edit'
   
   root to: 'welcome#index'
 

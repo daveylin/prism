@@ -46,6 +46,11 @@ class PeopleController < ApplicationController
   def show
     @person = Person.find(params[:id])
     #@hotlines = Hotline.where(person_id: @person.id)
+    
+    respond_to do |format|              
+      format.html
+      format.js
+    end        
   end
   
   private

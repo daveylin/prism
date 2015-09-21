@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+//= require bootstrap/modal
 
 
 //fadeout flash messages
