@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   
   get "hotline/_hotlines_edit" => 'hotline#_hotlines_edit', :as => :edit_hotline
+  get "hotline/_hotlines_add" => 'hotline#_hotlines_add', :as => :add_hotline
   
   post 'dashboard/search'
   get '/person/:id', to: 'person#show'
